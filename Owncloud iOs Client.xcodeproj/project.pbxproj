@@ -373,6 +373,8 @@
 		40AB1F6B1A123D1B003E7397 /* TABShares@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40AB1F6A1A123D1B003E7397 /* TABShares@3x.png */; };
 		40AC24D219FE725600582867 /* CredentialsDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC24D119FE725600582867 /* CredentialsDto.m */; };
 		40CC7F0D1B4E665400231D73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40CC7F0C1B4E665400231D73 /* Images.xcassets */; };
+		40D3C3A31B861E7100779E77 /* ShareFileOrFolderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D3C3A21B861E7100779E77 /* ShareFileOrFolderTests.m */; };
+		40D3C3A61B862A5400779E77 /* ShareMainViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D3C3A51B862A5400779E77 /* ShareMainViewControllerTests.m */; };
 		40E30ED61B59105D00D36B07 /* iphoneInstantUpload.png in Resources */ = {isa = PBXBuildFile; fileRef = 40E30ED51B59105D00D36B07 /* iphoneInstantUpload.png */; };
 		40E30EDA1B5911A400D36B07 /* iphoneFiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 40E30ED91B5911A400D36B07 /* iphoneFiles.png */; };
 		40E354C51A14D671000E7FE4 /* ownCloud-xmas@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40E354C41A14D671000E7FE4 /* ownCloud-xmas@3x.png */; };
@@ -1411,6 +1413,8 @@
 		40AC24D019FE725600582867 /* CredentialsDto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CredentialsDto.h; path = DataBase/DTOs/CredentialsDto.h; sourceTree = "<group>"; };
 		40AC24D119FE725600582867 /* CredentialsDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CredentialsDto.m; path = DataBase/DTOs/CredentialsDto.m; sourceTree = "<group>"; };
 		40CC7F0C1B4E665400231D73 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		40D3C3A21B861E7100779E77 /* ShareFileOrFolderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareFileOrFolderTests.m; sourceTree = "<group>"; };
+		40D3C3A51B862A5400779E77 /* ShareMainViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMainViewControllerTests.m; sourceTree = "<group>"; };
 		40E30ED51B59105D00D36B07 /* iphoneInstantUpload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneInstantUpload.png; sourceTree = "<group>"; };
 		40E30ED91B5911A400D36B07 /* iphoneFiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneFiles.png; sourceTree = "<group>"; };
 		40E354C41A14D671000E7FE4 /* ownCloud-xmas@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ownCloud-xmas@3x.png"; sourceTree = "<group>"; };
@@ -1842,6 +1846,8 @@
 		132429B415ADBB3800DF823E /* Owncloud iOs ClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				40D3C3A51B862A5400779E77 /* ShareMainViewControllerTests.m */,
+				40D3C3A21B861E7100779E77 /* ShareFileOrFolderTests.m */,
 				132429BA15ADBB3800DF823E /* Owncloud_iOs_ClientTests.h */,
 				132429BB15ADBB3800DF823E /* Owncloud_iOs_ClientTests.m */,
 				132429B515ADBB3800DF823E /* Supporting Files */,
@@ -4312,7 +4318,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40D3C3A31B861E7100779E77 /* ShareFileOrFolderTests.m in Sources */,
 				132429BC15ADBB3800DF823E /* Owncloud_iOs_ClientTests.m in Sources */,
+				40D3C3A61B862A5400779E77 /* ShareMainViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
