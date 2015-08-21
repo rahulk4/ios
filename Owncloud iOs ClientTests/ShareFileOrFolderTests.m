@@ -194,6 +194,7 @@
     [self.sharedFileOrFolder clickOnShareLinkFromFileDto:true];
 
     XCTAssert(YES, @"Pass");
+    
 }
 
 - (void)testPerformanceExample {
