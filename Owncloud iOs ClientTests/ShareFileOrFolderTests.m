@@ -26,6 +26,7 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
 
     self.sharedFileOrFolder = [ShareFileOrFolder new];
+    
    // self.sharedFileOrFolder.delegate = self;
 }
 
@@ -37,6 +38,8 @@
 - (void)testExample {
     // This is an example of a functional test case.
     XCTAssert(YES, @"Pass");
+    
+    
 }
 
 
