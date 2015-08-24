@@ -16,6 +16,7 @@
 @property (nonatomic) OCSharedDto *shareDto;
 @property (nonatomic) ShareFileOrFolder* sharedFileOrFolder;
 @property (nonatomic, strong) AppDelegate *app;
+//@property (nonatomic, strong) UIActionSheet *shareActionSheet;
 
 
 @end
@@ -54,6 +55,10 @@
     //then
     XCTAssert(YES, @"Pass");
     
+    
+// The given part describes the state of the world before you begin the behavior you're specifying in this scenario. You can think of it as the pre-conditions to the test.
+// The when section is that behavior that you're specifying.
+//Finally the then section describes the changes you expect due to the specified behavior
     
     
 }
@@ -101,10 +106,11 @@
     file.sharedFileSource = 1; //Already shared
     
     //when
-    
+    [self.sharedFileOrFolder showShareActionSheetForFile:file];
     
     //then
     //check sheet is show
+    XCTAssertNotNil(self.sharedFileOrFolder.shareActionSheet);
     
 }
 
