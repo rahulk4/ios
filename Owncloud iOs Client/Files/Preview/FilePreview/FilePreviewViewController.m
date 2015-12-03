@@ -940,9 +940,6 @@ NSString * iPhoneShowNotConnectionWithServerMessageNotification = @"iPhoneShowNo
     NSMutableDictionary * headers = [NSMutableDictionary dictionary];
     NSString *basicAuthCredentials = [NSString stringWithFormat:@"%@:%@", APP_DELEGATE.activeUser.username, APP_DELEGATE.activeUser.password];
     NSString *credentials = [NSString stringWithFormat:@"Basic %@", [UtilsFramework AFBase64EncodedStringFromString:basicAuthCredentials]];
-    
-    
-    //[myRequest addValue:[NSString stringWithFormat:@"Basic %@", [UtilsFramework AFBase64EncodedStringFromString:basicAuthCredentials]] forHTTPHeaderField:@"Authorization"];
 
     [headers setObject:[UtilsUrls getUserAgent] forKey:@"User-Agent"];
     [headers setObject:credentials forKey:@"Authorization"];
