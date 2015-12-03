@@ -42,6 +42,7 @@
 #import "SyncFolderManager.h"
 #import "DownloadUtils.h"
 #import "ManageCapabilitiesDB.h"
+#import "UtilsFramework.h"
 
 
 //Constant for iOS7
@@ -53,6 +54,9 @@ NSString * iPhoneCleanPreviewNotification = @"iPhoneCleanPreviewNotification";
 NSString * iPhoneShowNotConnectionWithServerMessageNotification = @"iPhoneShowNotConnectionWithServerMessageNotification";
 
 @interface FilePreviewViewController ()
+
+@property (nonatomic, strong) AVPlayerItem *playerItem;
+@property (nonatomic, strong) AVPlayer *avPlayer;
 
 @end
 
@@ -489,7 +493,7 @@ NSString * iPhoneShowNotConnectionWithServerMessageNotification = @"iPhoneShowNo
             if (_file.isDownload == updating) {
                 //Preview the file
                 if (_typeOfFile == videoFileType || _typeOfFile == audioFileType) {
-                    [self performSelector:@selector(playMediaFile) withObject:nil afterDelay:0.0];
+                    [self performSelector:@selector(playMediaFileByStreaming) withObject:nil afterDelay:0.0];
                 } else if (_typeOfFile == officeFileType) {
                     [self performSelectorOnMainThread:@selector(openFileOffice) withObject:nil waitUntilDone:YES];
                 } else {
@@ -530,7 +534,7 @@ NSString * iPhoneShowNotConnectionWithServerMessageNotification = @"iPhoneShowNo
             //Preview the file
             if ((!_file.isFavorite)||(_file.isFavorite && !_file.isNecessaryUpdate)) {
                 if (_typeOfFile == videoFileType || _typeOfFile == audioFileType) {
-                    [self performSelector:@selector(playMediaFile) withObject:nil afterDelay:0.0];
+                    [self performSelector:@selector(playMediaFileByStreaming) withObject:nil afterDelay:0.0];
                 } else if (_typeOfFile == officeFileType) {
                     [self performSelector:@selector(openFileOffice) withObject:nil afterDelay:0.1];
                     //[self performSelectorOnMainThread:@selector(openFileOffice) withObject:nil waitUntilDone:YES];
@@ -927,6 +931,36 @@ NSString * iPhoneShowNotConnectionWithServerMessageNotification = @"iPhoneShowNo
         [_moviePlayer playFile];
 
     }
+}
+
+- (void) playMediaFileByStreaming {
+    
+    NSURL *url = [NSURL fileURLWithPath:self.file.localFolder];
+    
+    NSMutableDictionary * headers = [NSMutableDictionary dictionary];
+    NSString *basicAuthCredentials = [NSString stringWithFormat:@"%@:%@", APP_DELEGATE.activeUser.username, APP_DELEGATE.activeUser.password];
+    NSString *credentials = [NSString stringWithFormat:@"Basic %@", [UtilsFramework AFBase64EncodedStringFromString:basicAuthCredentials]];
+    
+    
+    //[myRequest addValue:[NSString stringWithFormat:@"Basic %@", [UtilsFramework AFBase64EncodedStringFromString:basicAuthCredentials]] forHTTPHeaderField:@"Authorization"];
+
+    [headers setObject:[UtilsUrls getUserAgent] forKey:@"User-Agent"];
+    [headers setObject:credentials forKey:@"Authorization"];
+    
+    AVURLAsset * asset = [AVURLAsset URLAssetWithURL:url options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
+    self.playerItem = [AVPlayerItem playerItemWithAsset:asset];
+    self.avPlayer = [[AVPlayer alloc] initWithPlayerItem:self.playerItem];
+    
+    AVPlayerLayer *avPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
+    
+    avPlayerLayer.frame = self.view.layer.bounds;
+    
+    UIView *newView = [[UIView alloc] initWithFrame:self.view.bounds];
+    [newView.layer addSublayer:avPlayerLayer];
+    [self.view addSubview:newView];
+    [self.avPlayer play];
+    
+    
 }
 
 
@@ -1392,9 +1426,9 @@ NSString * iPhoneShowNotConnectionWithServerMessageNotification = @"iPhoneShowNo
         if(_typeOfFile == officeFileType) {
             [self performSelector:@selector(openFileOffice) withObject:nil afterDelay:0.5];
         } else if(_typeOfFile == audioFileType) {
-            [self performSelector:@selector(playMediaFile) withObject:nil afterDelay:0.5];
+            [self performSelector:@selector(playMediaFileByStreaming) withObject:nil afterDelay:0.5];
         } else if(_typeOfFile == videoFileType) {
-            [self performSelector:@selector(playMediaFile) withObject:nil afterDelay:0.5];
+            [self performSelector:@selector(playMediaFileByStreaming) withObject:nil afterDelay:0.5];
         } else if (_typeOfFile == imageFileType){
             DLog(@"Image file");
         } else {
